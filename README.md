@@ -7,3 +7,5 @@ mirrorTime: works with hours and minutes separately
 mirrorTime2: reflects the total minutes elapsed and then transforms to a time string
 
 unit tests around both, with validation tests on mirrorTime2
+
+Both methods only accept times in format HH:MM, return success in same format or error message
