@@ -15,26 +15,24 @@ const testData = [
     ["six o'clock", '06:00', '06:00'],
     ["one minute past six", '06:01', '05:59'],
     ['ten to eleven', '10:50', '01:10'],
-    ['ten to noon', '11:50', '12:10']
+    ['ten to noon', '11:50', '12:10'],
+    ['a minute to noon', '11:59', '12:01']
 ];
 
-describe('mirrorTime', () => {
+describe.each([
+    ['mirrorTime', mirrorTime],
+    ['mirrorTime2', mirrorTime2]
+])('%s', (scenario, method) => {
     it.each(testData)('reflects time correctly when %s', (scenario: string, time: string, reflectedTime: string) => {
-        expect(mirrorTime(time)).toEqual(reflectedTime);
-    })
-})
-
-describe('mirrorTime2', () => {
-    it.each(testData)('reflects time correctly when %s', (scenario: string, time: string, reflectedTime: string) => {
-        expect(mirrorTime2(time)).toEqual(reflectedTime);
+        expect(method(time)).toEqual(reflectedTime);
     })
     it('returns the correct error message when no time supplied', () => {
-        expect(mirrorTime2('')).toEqual('invalid input');
+        expect(method('')).toEqual('invalid input');
     })
     it('returns the correct error message when bad length string supplied', () => {
-        expect(mirrorTime2('this is not a time string')).toEqual('invalid input');
+        expect(method('this is not a time string')).toEqual('invalid input');
     })
     it.each(['34:00', 'AB:CD', '13:00', '12:61', '12:-1', '01:99'])('returns the correct error message when time is %s', (input: string) => {
-        expect(mirrorTime2(input)).toEqual('invalid time');
+        expect(method(input)).toEqual('invalid time');
     })
 })

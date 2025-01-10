@@ -1,5 +1,7 @@
-const timeFormatRegex = /^(1[0-2]|0?[1-9]):([0-5]?[0-9])$/;
-const halfTotalMinutes = 60 * 6;
+const timeFormatRegex = /^(1[0-2]|0[1-9]):([0-5][0-9])$/;
+const minutesInAnHour = 60;
+const hoursOnAClockFace = 12;
+const halfTotalMinutes = minutesInAnHour * (hoursOnAClockFace / 2);
 // first cut of function
 // it works but it's funky and it isn't obvious how it works....
 export function mirrorTime(time: string): string {
